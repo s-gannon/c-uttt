@@ -1,4 +1,3 @@
-//MPI and #pragma tags commented out for debugging purposes
 #include <iostream>
 #include <fstream>
 #include <cstdint>

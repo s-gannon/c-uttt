@@ -13,7 +13,8 @@
 uttt::uttt(){
     win_status = EMPTY;
     for(int i = 0; i < 9; i++){
-        board[i] = ttt();
+        ttt new_game;
+        board[i] = new_game;
     }
 }
 //accessors
@@ -23,8 +24,9 @@ int_fast8_t uttt::get_mark_at_pos(int_fast8_t subboard, int_fast8_t pos){
     } catch(const std::exception& e){
         printf("%s\n", e.what());
     }
+    return 0;
 }
-ttt get_subboard(int_fast8_t subboard){
+ttt uttt::get_subboard(int_fast8_t subboard){
     return board[subboard];
 }
 int_fast8_t uttt::get_win_status(){
@@ -51,15 +53,15 @@ void uttt::update_win_status(){
     }
     if(!is_drawn){
         for(int i = 0; i < 3; i++){
-            if((b[0] == b[4] == b[8]) || (b[2] == b[4] == b[6])){
+            if(((b[0] == b[4]) && (b[4] == b[8])) || ((b[2] == b[4]) && (b[4] == b[6]))){
                 win_status = b[4];
                 break;
             }
-            else if(b[i*3] == b[(i*3)+1] == b[(i*3)+2]){
+            else if((b[i*3] == b[(i*3)+1]) && (b[(i*3)+1] == b[(i*3)+2])){
                 win_status = b[i*3];
                 break;
             }
-            else if(b[i] == b[i+3] == b[i+6]){
+            else if((b[i] == b[i+3]) && (b[i+3] == b[i+6])){
                 win_status = b[i];
                 break;
             }
@@ -94,7 +96,7 @@ void uttt::print(){
                     else{
                         printf(" ");
                     }
-                    if(!(y == z == 2)){
+                    if(!((y == z) && (z == 2))){
                         printf("|");
                     }
                 }
@@ -151,7 +153,7 @@ std::string uttt::tostr(){
                     else{
                         fmt.append(" ");
                     }
-                    if(!(y == z == 2)){
+                    if(!((y == z) && (z == 2))){    //if y == z and z == 2, then y also == 2 via transitivity
                         fmt.append("|");
                     }
                 }

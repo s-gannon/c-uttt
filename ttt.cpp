@@ -46,15 +46,15 @@ void ttt::update_win_status(){
     }
     if(!is_drawn){
         for(int i = 0; i < 3; i++){
-            if((board[0] == board[4] == board[8]) || (board[2] == board[4] == board[6])){
+            if(((board[0] == board[4]) && (board[4] == board[8])) || ((board[2] == board[4]) && (board[4] == board[6]))){
                 win_status = board[4];
                 break;
             }
-            else if(board[i*3] == board[(i*3)+1] == board[(i*3)+2]){
+            else if((board[i*3] == board[(i*3)+1]) && (board[(i*3)+1] == board[(i*3)+2])){
                 win_status = board[i*3];
                 break;
             }
-            else if(board[i] == board[i+3] == board[i+6]){
+            else if((board[i] == board[i+3]) && (board[i+3] == board[i+6])){
                 win_status = board[i];
                 break;
             }
@@ -75,23 +75,24 @@ void ttt::reset(){
     }
 }
 void ttt::print(){
-    std::string cboard[9];
+    char cboard[9];
     for(int i = 0; i < 9; i++){
         if(board[i] == X){
-            cboard[i] = "X";
+            cboard[i] = 'X';
         }
         else if(board[i] == O){
-            cboard[i] = "O";
+            cboard[i] = 'O';
         }
         else{
-            cboard[i] = " ";
+            cboard[i] = ' ';
         }
     }
-    printf("%s|%s|%s\n", cboard[0], cboard[1], cboard[2]);
+    //could throw this in a for loop and have only 2 statements; refactor later
+    printf("%c|%c|%c\n", cboard[0], cboard[1], cboard[2]);
     printf("-+-+-\n");
-    printf("%s|%s|%s\n", cboard[3], cboard[4], cboard[5]);
+    printf("%c|%c|%c\n", cboard[3], cboard[4], cboard[5]);
     printf("-+-+-\n");
-    printf("%s|%s|%s\n", cboard[6], cboard[7], cboard[8]);
+    printf("%c|%c|%c\n", cboard[6], cboard[7], cboard[8]);
 }
 bool ttt::check_legal(int_fast8_t pos){
     if(pos >= 0 && pos < 9){
