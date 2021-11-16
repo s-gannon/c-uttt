@@ -7,7 +7,7 @@ TARGET=cpp-uttt
 
 all: $(TARGET)
 
-cpp-utt: $(OBJS)
+cpp-uttt: $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
 
 %.o: %.cpp
