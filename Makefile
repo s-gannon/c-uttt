@@ -3,7 +3,7 @@ CXX=g++
 CXXFLAGS=-Wall -pedantic
 SRCS=main.cpp ttt.cpp uttt.cpp
 OBJS=$(SRCS:.cpp=.o)
-TARGET=cpp-utt
+TARGET=cpp-uttt
 
 all: $(TARGET)
 
